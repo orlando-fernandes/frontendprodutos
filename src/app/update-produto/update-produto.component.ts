@@ -12,6 +12,7 @@ export class UpdateProdutoComponent implements OnInit {
 
   codigo: number;
   produto: Produto;
+  submitted = false;
 
   constructor(private route: ActivatedRoute,private router: Router,
     private produtoService: ProdutoService) { }
@@ -29,6 +30,7 @@ export class UpdateProdutoComponent implements OnInit {
   }
 
   updateProduto() {
+    this.submitted = false;
     this.produtoService.updateProduto(this.codigo, this.produto)
       .subscribe(data => console.log(data), error => console.log(error));
     this.produto = new Produto();
@@ -36,6 +38,7 @@ export class UpdateProdutoComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
     this.updateProduto();    
   }
 
